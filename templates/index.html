@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumonia Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #e9ecef;
+        }
+        h2 {
+            font-size: 1.8rem;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <h1 class="text-center">Pneumonia Detection</h1>
+                    <p class="text-center text-muted">Upload a chest X-ray image to detect if pneumonia is present.</p>
+                    <form action="/predict" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Upload X-Ray Image:</label>
+                            <input type="file" class="form-control" name="file" id="file" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Predict</button>
+                    </form>
+                    
+                    {% if prediction %}
+                        <div class="result-box mt-4">
+                            <h2>Prediction Result: {{ prediction }}</h2>
+                            {% if prediction == "Pneumonia" %}
+                                <div class="alert alert-danger" role="alert">
+                                    Pneumonia detected. Please consult a doctor for further diagnosis.
+                                </div>
+                            {% else %}
+                                <div class="alert alert-success" role="alert">
+                                    The X-ray appears normal. No pneumonia detected.
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (for responsiveness and interactivity) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
