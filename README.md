@@ -29,7 +29,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/pneumonia-detection-app.git
+git clone https://github.com/barrack81/pneumonia_ML.git
 cd pneumonia-detection-app
 Set up a virtual environment:
 
